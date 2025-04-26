@@ -1,0 +1,8 @@
+- name: installer
+  hosts:
+    - target
+  become: yes
+  roles:
+    - role: docker_role
+    - role: python_role
+    - role: node_role

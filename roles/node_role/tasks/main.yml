@@ -1,0 +1,16 @@
+- ansible.builtin.apt:
+    update_cache: yes
+    name:
+      - jq
+- ansible.builtin.shell: |
+    curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r ".tag_name"
+  register: nvm_ver
+
+- name: "Install nvm"
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/{{nvm_ver.stdout}}/install.sh
+    dest: /tmp/nvm_install.sh
+    mode: "0755"
+- ansible.builtin.command: bash /tmp/nvm_install.sh
+  become: yes
+  become_user: "{{ ansible_user }}"
