@@ -1,0 +1,10 @@
+- name: "Install xrdp"
+  ansible.builtin.apt:
+    update_cache: yes
+    name:
+      - xrdp
+
+- name: "Restart xrdp service"
+  ansible.builtin.service:
+    name: xrdp
+    state: restarted
