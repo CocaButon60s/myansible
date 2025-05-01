@@ -6,6 +6,9 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[ansible]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "ansible.validation.enabled": false,
   "ansible.python.interpreterPath": "/bin/python3"
 }
