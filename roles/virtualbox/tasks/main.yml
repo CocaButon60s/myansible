@@ -1,8 +1,6 @@
 - name: "Install virtualbox"
-  ansible.builtin.command: uname -r
-  register: kernel_release
-- ansible.builtin.get_url:
-    url: https://download.virtualbox.org/virtualbox/7.1.8/virtualbox-7.1_7.1.8-168469~Ubuntu~jammy_amd64.deb
+  ansible.builtin.get_url:
+    url: https://download.virtualbox.org/virtualbox/7.1.8/virtualbox-7.1_7.1.8-168469~Ubuntu~{{ ansible_lsb.codename }}_amd64.deb
     dest: /tmp/virtualbox.deb
 - ansible.builtin.apt:
     deb: /tmp/virtualbox.deb
@@ -12,5 +10,5 @@
     name:
       - build-essential
       - dkms
-      - linux-headers-{{ kernel_release.stdout }}
+      - linux-headers-{{ ansible_kernel }}
 - ansible.builtin.command: /sbin/vboxconfig
